@@ -54,16 +54,16 @@ jobs:
             echo "version=${VERSION}" >> $GITHUB_OUTPUT
           fi
 
-      # Create CurseForge compatible modpack
-      - name: Create modpack ZIP
+      # Extract CurseForge mod info and create modpack
+      - name: Create CurseForge modpack ZIP
         run: |
-          echo "Creating a modpack ZIP file"
+          echo "Creating a modpack ZIP file with CurseForge format"
           mkdir -p modpack_temp/overrides
           cp -r mods modpack_temp/overrides/
           cp pack.toml modpack_temp/overrides/
           cp index.toml modpack_temp/overrides/
 
-          # Create manifest.json for CurseForge format
+          # Start creating the manifest.json file
           cat > modpack_temp/manifest.json << EOF
           {
             "minecraft": {
@@ -80,9 +80,49 @@ jobs:
             "name": "Friends Modpack",
             "version": "${{ env.VERSION }}",
             "author": "filipjaruska",
-            "files": []
+            "files": [
+          EOF
+
+          # Parse all mod toml files and extract CurseForge IDs
+          echo "Extracting CurseForge mod IDs from TOML files..."
+          FIRST_MOD=true
+          for MOD_FILE in mods/*.pw.toml; do
+            if grep -q "mode = \"metadata:curseforge\"" "$MOD_FILE"; then
+              PROJECT_ID=$(grep -oP 'project-id\s*=\s*\K\d+' "$MOD_FILE")
+              FILE_ID=$(grep -oP 'file-id\s*=\s*\K\d+' "$MOD_FILE")
+              
+              if [ ! -z "$PROJECT_ID" ] && [ ! -z "$FILE_ID" ]; then
+                echo "Found CurseForge mod: Project ID: $PROJECT_ID, File ID: $FILE_ID in $MOD_FILE"
+                
+                # Add comma for all mods except the first one
+                if [ "$FIRST_MOD" = true ]; then
+                  FIRST_MOD=false
+                else
+                  echo "," >> modpack_temp/manifest.json
+                fi
+                
+                # Add the mod to manifest.json
+                cat >> modpack_temp/manifest.json << EOF
+              {
+                "projectID": $PROJECT_ID,
+                "fileID": $FILE_ID,
+                "required": true
+              }
+          EOF
+              fi
+            else
+              echo "Warning: $MOD_FILE is not a CurseForge mod, it will be included in overrides"
+            fi
+          done
+
+          # Close the JSON structure
+          cat >> modpack_temp/manifest.json << EOF
+            ]
           }
           EOF
+
+          echo "Manifest.json content:"
+          cat modpack_temp/manifest.json
 
           # Create modpack ZIP
           cd modpack_temp
@@ -92,27 +132,20 @@ jobs:
           echo "Modpack ZIP file created:"
           ls -la FriendsModpack-${{ env.VERSION }}.zip
 
-      # Generate CurseForge export with proper indexing
-      - name: Generate CurseForge Export
+      # Try the packwiz export as a backup option
+      - name: Try packwiz CurseForge Export (as backup)
+        continue-on-error: true
         run: |
-          echo "Listing all mods in the modpack:"
-          ls -la mods/
-
-          # First refresh the index to ensure all mods are included
           echo "Refreshing packwiz index..."
           packwiz refresh
 
-          # Verify the index was updated and contains all mods
-          echo "Showing modpack contents:"
-          packwiz list
-
-          # Now export the modpack
-          echo "Running packwiz curseforge export..."
+          echo "Attempting packwiz curseforge export (may not include all mods)..."
           packwiz curseforge export --output "FriendsModpack-CF-${{ env.VERSION }}.zip"
 
-          # Verify the export worked
-          echo "Checking if export was created:"
-          ls -la FriendsModpack-CF-${{ env.VERSION }}.zip
+          echo "Note: If the above export fails or doesn't include all mods, we'll use the manually created ZIP file"
+
+          # Copy the manual ZIP as a backup in case the packwiz export fails
+          cp FriendsModpack-${{ env.VERSION }}.zip FriendsModpack-CF-${{ env.VERSION }}.zip || true
 
       # Create GitHub Release
       - name: Create Release
@@ -126,7 +159,6 @@ jobs:
           generate_release_notes: true
           files: |
             FriendsModpack-${{ env.VERSION }}.zip
-            FriendsModpack-CF-${{ env.VERSION }}.zip
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

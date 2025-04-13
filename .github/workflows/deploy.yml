@@ -159,6 +159,7 @@ jobs:
           generate_release_notes: true
           files: |
             FriendsModpack-${{ env.VERSION }}.zip
+            FriendsModpack-CF-${{ env.VERSION }}.zip
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

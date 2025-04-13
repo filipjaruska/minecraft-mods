@@ -9,3 +9,8 @@ metafile = true
 file = "mods/forgified-fabric-api.pw.toml"
 hash = "c604862c7db098f8edcfa6aa1ebc4e235b3008fdbc61450c0da9c3c234513a54"
 metafile = true
+
+[[files]]
+file = "mods/projecte.pw.toml"
+hash = "d5888ffcf49a86a8796d575aad15e98c148a65bcd71c9e06670b31aa40668e9c"
+metafile = true

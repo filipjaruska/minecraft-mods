@@ -92,20 +92,27 @@ jobs:
           echo "Modpack ZIP file created:"
           ls -la FriendsModpack-${{ env.VERSION }}.zip
 
-      # Also try the packwiz export as an alternative
-      - name: Generate CurseForge Export (if possible)
-        continue-on-error: true
+      # Generate CurseForge export with proper indexing
+      - name: Generate CurseForge Export
         run: |
-          # Show available commands first
-          echo "Available packwiz commands:"
-          packwiz --help
+          echo "Listing all mods in the modpack:"
+          ls -la mods/
 
-          # Try to export using curseforge command
+          # First refresh the index to ensure all mods are included
+          echo "Refreshing packwiz index..."
+          packwiz refresh
+
+          # Verify the index was updated and contains all mods
+          echo "Showing modpack contents:"
+          packwiz list
+
+          # Now export the modpack
           echo "Running packwiz curseforge export..."
-          packwiz curseforge export --output "FriendsModpack-CF-${{ env.VERSION }}.zip" || echo "Packwiz export failed"
+          packwiz curseforge export --output "FriendsModpack-CF-${{ env.VERSION }}.zip"
 
-          echo "Working directory contents:"
-          ls -la
+          # Verify the export worked
+          echo "Checking if export was created:"
+          ls -la FriendsModpack-CF-${{ env.VERSION }}.zip
 
       # Create GitHub Release
       - name: Create Release

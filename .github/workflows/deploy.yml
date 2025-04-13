@@ -199,10 +199,10 @@ jobs:
             2. Click "Create Custom Profile" → "Import"
             3. Select the downloaded ZIP file
 
-            ${{ env.MODS_LIST }}
+            ### Full Changelog
+            https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
 
-            ### Changes
-            See commit history for details.
+            ${{ env.MODS_LIST }}
           files: |
             FriendsModpack-${{ env.VERSION }}.zip
             mods_list.txt

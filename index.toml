@@ -1,8 +1,18 @@
 hash-format = "sha256"
 
 [[files]]
+file = "mods/blockui.pw.toml"
+hash = "f4015f21ab6f4c3dacbf58427c1216a01dd497dce7334ae427b41340690b6b5b"
+metafile = true
+
+[[files]]
 file = "mods/connector.pw.toml"
 hash = "0a4d0034c5a1379d5aa57c0a104aaa2adbb98f1e2b89d4ec0b7ef68df2e16a1a"
+metafile = true
+
+[[files]]
+file = "mods/domum-ornamentum.pw.toml"
+hash = "757d82d85e87524e67e5f86a0e662b1b1263846d73d98f4da098730ee499ecdf"
 metafile = true
 
 [[files]]
@@ -11,6 +21,26 @@ hash = "c604862c7db098f8edcfa6aa1ebc4e235b3008fdbc61450c0da9c3c234513a54"
 metafile = true
 
 [[files]]
+file = "mods/minecolonies.pw.toml"
+hash = "25655321301c8eb38ba06611730a61efea316d8caa0ed2a2a4c8dab3cdeb25ca"
+metafile = true
+
+[[files]]
+file = "mods/multi-piston.pw.toml"
+hash = "1dc16fe98446b86b94a8bfa08f07accf11a7b07fc39730b2e7b32560dcaf1c45"
+metafile = true
+
+[[files]]
 file = "mods/projecte.pw.toml"
 hash = "d5888ffcf49a86a8796d575aad15e98c148a65bcd71c9e06670b31aa40668e9c"
+metafile = true
+
+[[files]]
+file = "mods/structurize.pw.toml"
+hash = "5aa43903423c9fec48bcd375ab17890fe86c66a2a82574b8ebd7a4f5a5e29720"
+metafile = true
+
+[[files]]
+file = "mods/towntalk.pw.toml"
+hash = "a7074e8e499d34f5ce633dbd33f818e376dd1941ec5b1d97a33acd019df69b5a"
 metafile = true

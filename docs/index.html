@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friends Modpack</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f5f5f5;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+      .container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .download-button {
+        display: inline-block;
+        background-color: #f16436;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        margin: 20px 0;
+        transition: background-color 0.2s;
+      }
+      .download-button:hover {
+        background-color: #e04e1e;
+      }
+      code {
+        background-color: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      .installation {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Friends Modpack</h1>
+      <p>A custom Minecraft modpack for Minecraft 1.21.1 on NeoForge.</p>
+
+      <a href="FriendsModpack.zip" class="download-button"
+        >Download CurseForge Modpack</a
+      >
+
+      <div class="installation">
+        <h2>CurseForge Installation</h2>
+        <ol>
+          <li>
+            Download
+            <a href="https://www.curseforge.com/download/app" target="_blank"
+              >CurseForge App</a
+            >
+          </li>
+          <li>Open the CurseForge App and click on "Minecraft" tab</li>
+          <li>Click "Create Custom Profile" in the top right</li>
+          <li>Click "Import" at the bottom</li>
+          <li>Select the downloaded <code>FriendsModpack.zip</code> file</li>
+          <li>Click "Play" to launch the modpack!</li>
+        </ol>
+
+        <h2>Server Installation</h2>
+        <p>To install this modpack on a server:</p>
+        <ol>
+          <li>
+            Download
+            <a
+              href="https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar"
+              >packwiz-installer-bootstrap.jar</a
+            >
+          </li>
+          <li>Run the following command in your server directory:</li>
+          <code id="serverCommand">Loading command...</code>
+        </ol>
+
+        <p>
+          For Docker users, itzg's docker-minecraft-server supports packwiz
+          directly:
+        </p>
+        <code id="dockerCommand">Loading Docker command...</code>
+      </div>
+    </div>
+
+    <script>
+      // Get the current URL to use in the examples
+      const baseUrl = window.location.href.split("/index.html")[0];
+      document.getElementById("serverCommand").textContent =
+        "java -jar packwiz-installer-bootstrap.jar -g -s server " +
+        baseUrl +
+        "/pack.toml";
+      document.getElementById("dockerCommand").textContent =
+        "docker run -e TYPE=FORGE -e VERSION=1.21.1 -e PACKWIZ_URL=" +
+        baseUrl +
+        "/pack.toml ...";
+    </script>
+  </body>
+</html>

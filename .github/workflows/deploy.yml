@@ -1,0 +1,35 @@
+name: Deploy Modpack
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ">=1.19.0"
+
+      - name: Install Packwiz
+        run: go install github.com/packwiz/packwiz@latest
+
+      - name: Generate CurseForge Export
+        run: |
+          cd ${{ github.workspace }}
+          packwiz curseforge export --output "./docs/FriendsModpack.zip"
+          # Copy necessary files for the website
+          cp pack.toml docs/
+          cp -r mods docs/
+          cp index.toml docs/
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs
+          clean: false

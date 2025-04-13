@@ -8,11 +8,10 @@ This modpack uses [packwiz](https://packwiz.infra.link/tutorials/creating/gettin
 
 Modpack config is in [pack.toml](/pack.toml).
 
-## Instructions
+## Development Instructions
 
 1. Install Go (1.19 or newer) from https://golang.org/dl/
 2. Run in terminal: `go install github.com/packwiz/packwiz@latest`
-3. To get the file run: `packwiz curseforge export`
 
 ## Mod Management
 
@@ -23,3 +22,13 @@ packwiz curseforge install [mod]
 # Install from Modrinth
 packwiz modrinth install [mod]
 ```
+
+## CurseForge Distribution
+
+To export the modpack for CurseForge:
+
+```bash
+packwiz curseforge export
+```
+
+This will create a `.zip` file that can be imported directly into the CurseForge app.

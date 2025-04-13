@@ -1,15 +1,24 @@
-name: Deploy Modpack
+name: Build and Release Modpack
 
 on:
   push:
     branches: [main]
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number for this release"
+        required: true
+        default: "0.1.0"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -17,35 +26,89 @@ jobs:
           go-version: ">=1.19.0"
 
       - name: Install Packwiz
-        run: go install github.com/packwiz/packwiz@latest
-
-      - name: Debug - List workspace contents
         run: |
-          echo "Listing workspace contents:"
+          go install github.com/packwiz/packwiz@latest
+          echo "Packwiz version:"
+          packwiz version
+
+      - name: Set release version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            VERSION="${{ github.ref_name }}"
+            echo "VERSION=${VERSION#v}" >> $GITHUB_ENV
+            echo "version=${VERSION#v}" >> $GITHUB_OUTPUT
+          else
+            # Use current date and short commit hash for dev builds
+            SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+            VERSION="$(date +'%Y%m%d')-${SHORT_SHA}"
+            echo "VERSION=${VERSION}" >> $GITHUB_ENV
+            echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          fi
+
+      # Create CurseForge compatible modpack
+      - name: Create modpack ZIP
+        run: |
+          echo "Creating a modpack ZIP file"
+          mkdir -p modpack_temp/overrides
+          cp -r mods modpack_temp/overrides/
+          cp pack.toml modpack_temp/overrides/
+          cp index.toml modpack_temp/overrides/
+
+          # Create manifest.json for CurseForge format
+          cat > modpack_temp/manifest.json << EOF
+          {
+            "minecraft": {
+              "version": "1.21.1",
+              "modLoaders": [
+                {
+                  "id": "neoforge-21.1.147",
+                  "primary": true
+                }
+              ]
+            },
+            "manifestType": "minecraftModpack",
+            "manifestVersion": 1,
+            "name": "Friends Modpack",
+            "version": "${{ env.VERSION }}",
+            "author": "filipjaruska",
+            "files": []
+          }
+          EOF
+
+          # Create modpack ZIP
+          cd modpack_temp
+          zip -r ../FriendsModpack-${{ env.VERSION }}.zip *
+          cd ..
+
+          echo "Modpack ZIP file created:"
+          ls -la FriendsModpack-${{ env.VERSION }}.zip
+
+      # Also try the packwiz export as an alternative
+      - name: Generate CurseForge Export (if possible)
+        continue-on-error: true
+        run: |
+          packwiz curseforge export --output "FriendsModpack-CF-${{ env.VERSION }}.zip" || echo "Packwiz export failed"
+
+          echo "Working directory contents:"
           ls -la
-          echo "Listing mods directory contents:"
-          ls -la mods/
 
-      - name: Generate CurseForge Export
-        run: |
-          cd ${{ github.workspace }}
-          echo "Running packwiz curseforge export..."
-          packwiz curseforge export --output "./docs/FriendsModpack.zip"
-          echo "Export completed, checking if file was created:"
-          ls -la ./docs/
-
-          # Copy necessary files for the website
-          echo "Copying necessary files to docs directory..."
-          cp pack.toml docs/
-          cp -r mods docs/
-          cp index.toml docs/
-
-          echo "Final docs directory contents:"
-          ls -la ./docs/
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      # Create GitHub Release
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
         with:
-          folder: docs
-          branch: gh-pages
-          clean: true
+          name: Friends Modpack v${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            FriendsModpack-${{ env.VERSION }}.zip
+            FriendsModpack-CF-${{ env.VERSION }}.zip
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

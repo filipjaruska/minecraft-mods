@@ -88,12 +88,8 @@ jobs:
           echo "Mods list generated:"
           cat mods_list.txt
 
-          # Create a release body with mods list
-          {
-            echo 'MODS_LIST<<EOF'
-            cat mods_list.txt
-            echo 'EOF'
-          } >> $GITHUB_ENV
+          # Store just the mod count for the release notes
+          echo "MOD_COUNT=$MOD_COUNT" >> $GITHUB_ENV
 
       - name: Create CurseForge Modpack
         run: |
@@ -193,16 +189,17 @@ jobs:
           prerelease: false
           body: |
             ## Friends Modpack v${{ env.VERSION }}
-
+            
             ### Installation
             1. Download the CurseForge App from https://www.curseforge.com/download/app
             2. Click "Create Custom Profile" → "Import"
             3. Select the downloaded ZIP file
-
+            
             ### Full Changelog
             https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
-
-            ${{ env.MODS_LIST }}
+            
+            ### Mods
+            This modpack contains ${{ env.MOD_COUNT }} mods. See the attached mods_list.txt for the complete list.
           files: |
             FriendsModpack-${{ env.VERSION }}.zip
             mods_list.txt

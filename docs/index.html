@@ -58,6 +58,14 @@
         >Download CurseForge Modpack</a
       >
 
+      <p>
+        <strong>Direct download link:</strong>
+        <a
+          href="https://filipjaruska.github.io/minecraft-mods/FriendsModpack.zip"
+          >https://filipjaruska.github.io/minecraft-mods/FriendsModpack.zip</a
+        >
+      </p>
+
       <div class="installation">
         <h2>CurseForge Installation</h2>
         <ol>
@@ -73,40 +81,6 @@
           <li>Select the downloaded <code>FriendsModpack.zip</code> file</li>
           <li>Click "Play" to launch the modpack!</li>
         </ol>
-
-        <h2>Server Installation</h2>
-        <p>To install this modpack on a server:</p>
-        <ol>
-          <li>
-            Download
-            <a
-              href="https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar"
-              >packwiz-installer-bootstrap.jar</a
-            >
-          </li>
-          <li>Run the following command in your server directory:</li>
-          <code id="serverCommand">Loading command...</code>
-        </ol>
-
-        <p>
-          For Docker users, itzg's docker-minecraft-server supports packwiz
-          directly:
-        </p>
-        <code id="dockerCommand">Loading Docker command...</code>
       </div>
-    </div>
-
-    <script>
-      // Get the current URL to use in the examples
-      const baseUrl = window.location.href.split("/index.html")[0];
-      document.getElementById("serverCommand").textContent =
-        "java -jar packwiz-installer-bootstrap.jar -g -s server " +
-        baseUrl +
-        "/pack.toml";
-      document.getElementById("dockerCommand").textContent =
-        "docker run -e TYPE=FORGE -e VERSION=1.21.1 -e PACKWIZ_URL=" +
-        baseUrl +
-        "/pack.toml ...";
-    </script>
   </body>
 </html>

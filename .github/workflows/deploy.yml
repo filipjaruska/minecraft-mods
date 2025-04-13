@@ -19,17 +19,33 @@ jobs:
       - name: Install Packwiz
         run: go install github.com/packwiz/packwiz@latest
 
+      - name: Debug - List workspace contents
+        run: |
+          echo "Listing workspace contents:"
+          ls -la
+          echo "Listing mods directory contents:"
+          ls -la mods/
+
       - name: Generate CurseForge Export
         run: |
           cd ${{ github.workspace }}
+          echo "Running packwiz curseforge export..."
           packwiz curseforge export --output "./docs/FriendsModpack.zip"
+          echo "Export completed, checking if file was created:"
+          ls -la ./docs/
+
           # Copy necessary files for the website
+          echo "Copying necessary files to docs directory..."
           cp pack.toml docs/
           cp -r mods docs/
           cp index.toml docs/
+
+          echo "Final docs directory contents:"
+          ls -la ./docs/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: docs
-          clean: false
+          branch: gh-pages
+          clean: true

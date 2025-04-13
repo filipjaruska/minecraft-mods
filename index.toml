@@ -56,6 +56,11 @@ hash = "25655321301c8eb38ba06611730a61efea316d8caa0ed2a2a4c8dab3cdeb25ca"
 metafile = true
 
 [[files]]
+file = "mods/modernfix.pw.toml"
+hash = "c53101abeff70bbb6d5784991133efb61867d34491762bc13a20f215105b6a83"
+metafile = true
+
+[[files]]
 file = "mods/multi-piston.pw.toml"
 hash = "1dc16fe98446b86b94a8bfa08f07accf11a7b07fc39730b2e7b32560dcaf1c45"
 metafile = true

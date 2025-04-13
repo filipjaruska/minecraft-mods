@@ -1,6 +1,26 @@
 hash-format = "sha256"
 
 [[files]]
+file = "mods/apotheosis.pw.toml"
+hash = "eb8612ce21dd08ab5a673fcc33003837c4ee9aaf033aae48d979b739e5ca4fdd"
+metafile = true
+
+[[files]]
+file = "mods/apothic-attributes.pw.toml"
+hash = "87e280f47e37b3ca627fa0ded5113cbdab03c57a4bb78a3647729fd90500a405"
+metafile = true
+
+[[files]]
+file = "mods/apothic-enchanting.pw.toml"
+hash = "f979572c1e0b3b50c37fd99430cc2f53cd6b73045927a1ca6cc378991c985e6d"
+metafile = true
+
+[[files]]
+file = "mods/apothic-spawners.pw.toml"
+hash = "3f51958fd157c5701142d66dab494d069ae2cb4628368e2e5faf42cdf726f42c"
+metafile = true
+
+[[files]]
 file = "mods/blockui.pw.toml"
 hash = "f4015f21ab6f4c3dacbf58427c1216a01dd497dce7334ae427b41340690b6b5b"
 metafile = true
@@ -33,6 +53,16 @@ metafile = true
 [[files]]
 file = "mods/multi-piston.pw.toml"
 hash = "1dc16fe98446b86b94a8bfa08f07accf11a7b07fc39730b2e7b32560dcaf1c45"
+metafile = true
+
+[[files]]
+file = "mods/patchouli.pw.toml"
+hash = "b6aadb8e32f440b51cd958b68eee57b9fe5bab26c7cf2f56d0340cf7f593030f"
+metafile = true
+
+[[files]]
+file = "mods/placebo.pw.toml"
+hash = "0569bfe0d8f1637f9a45d07bfc540303700b815a6f1cc3ce85a1d5fbc3a750f7"
 metafile = true
 
 [[files]]

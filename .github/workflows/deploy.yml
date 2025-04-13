@@ -189,15 +189,15 @@ jobs:
           prerelease: false
           body: |
             ## Friends Modpack v${{ env.VERSION }}
-            
+
             ### Installation
             1. Download the CurseForge App from https://www.curseforge.com/download/app
             2. Click "Create Custom Profile" → "Import"
             3. Select the downloaded ZIP file
-            
+
             ### Full Changelog
             https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
-            
+
             ### Mods
             This modpack contains ${{ env.MOD_COUNT }} mods. See the attached mods_list.txt for the complete list.
           files: |

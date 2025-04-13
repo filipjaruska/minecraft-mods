@@ -46,6 +46,11 @@ hash = "c604862c7db098f8edcfa6aa1ebc4e235b3008fdbc61450c0da9c3c234513a54"
 metafile = true
 
 [[files]]
+file = "mods/jei.pw.toml"
+hash = "c344b0630eedfa7f8ed24e7cb916e49c231df456c40d20fc2b5fc0b675fb6517"
+metafile = true
+
+[[files]]
 file = "mods/minecolonies.pw.toml"
 hash = "25655321301c8eb38ba06611730a61efea316d8caa0ed2a2a4c8dab3cdeb25ca"
 metafile = true

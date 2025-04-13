@@ -54,14 +54,65 @@ jobs:
             echo "version=${VERSION}" >> $GITHUB_OUTPUT
           fi
 
-      # Extract CurseForge mod info and create modpack
-      - name: Create CurseForge modpack ZIP
+      - name: Generate Mods List
+        id: mods_list
         run: |
-          echo "Creating a modpack ZIP file with CurseForge format"
+          echo "Generating list of all mods in this release..."
+
+          # Create a mods list file
+          echo "# Mods in Friends Modpack v${{ env.VERSION }}" > mods_list.txt
+          echo "" >> mods_list.txt
+          echo "This release includes the following mods:" >> mods_list.txt
+          echo "" >> mods_list.txt
+
+          # Parse all mod toml files and extract mod names
+          MOD_COUNT=0
+          for MOD_FILE in mods/*.pw.toml; do
+            # Extract mod name from the file
+            MOD_NAME=$(grep -m 1 "^name" "$MOD_FILE" | cut -d'"' -f2 | sed 's/^name = //')
+            
+            if [ -z "$MOD_NAME" ]; then
+              # If name extraction failed, use filename without extension as fallback
+              MOD_NAME=$(basename "$MOD_FILE" .pw.toml)
+            fi
+            
+            # Append to mods list
+            echo "- $MOD_NAME" >> mods_list.txt
+            MOD_COUNT=$((MOD_COUNT+1))
+          done
+
+          # Add summary
+          echo "" >> mods_list.txt
+          echo "Total: $MOD_COUNT mods" >> mods_list.txt
+
+          echo "Mods list generated:"
+          cat mods_list.txt
+
+          # Create a release body with mods list
+          {
+            echo 'MODS_LIST<<EOF'
+            cat mods_list.txt
+            echo 'EOF'
+          } >> $GITHUB_ENV
+
+      - name: Create CurseForge Modpack
+        run: |
+          echo "Creating CurseForge compatible modpack..."
+
+          # Refresh packwiz index to ensure all mods are included
+          echo "Refreshing packwiz index..."
+          packwiz refresh
+
+          # List all mods in the modpack
+          echo "Mods in the modpack:"
+          ls -la mods/
+
+          # Create modpack structure
           mkdir -p modpack_temp/overrides
           cp -r mods modpack_temp/overrides/
           cp pack.toml modpack_temp/overrides/
           cp index.toml modpack_temp/overrides/
+          cp mods_list.txt modpack_temp/
 
           # Start creating the manifest.json file
           cat > modpack_temp/manifest.json << EOF
@@ -132,22 +183,6 @@ jobs:
           echo "Modpack ZIP file created:"
           ls -la FriendsModpack-${{ env.VERSION }}.zip
 
-      # Try the packwiz export as a backup option
-      - name: Try packwiz CurseForge Export (as backup)
-        continue-on-error: true
-        run: |
-          echo "Refreshing packwiz index..."
-          packwiz refresh
-
-          echo "Attempting packwiz curseforge export (may not include all mods)..."
-          packwiz curseforge export --output "FriendsModpack-CF-${{ env.VERSION }}.zip"
-
-          echo "Note: If the above export fails or doesn't include all mods, we'll use the manually created ZIP file"
-
-          # Copy the manual ZIP as a backup in case the packwiz export fails
-          cp FriendsModpack-${{ env.VERSION }}.zip FriendsModpack-CF-${{ env.VERSION }}.zip || true
-
-      # Create GitHub Release
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -156,10 +191,21 @@ jobs:
           tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
-          generate_release_notes: true
+          body: |
+            ## Friends Modpack v${{ env.VERSION }}
+
+            ### Installation
+            1. Download the CurseForge App from https://www.curseforge.com/download/app
+            2. Click "Create Custom Profile" → "Import"
+            3. Select the downloaded ZIP file
+
+            ${{ env.MODS_LIST }}
+
+            ### Changes
+            See commit history for details.
           files: |
             FriendsModpack-${{ env.VERSION }}.zip
-            FriendsModpack-CF-${{ env.VERSION }}.zip
+            mods_list.txt
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

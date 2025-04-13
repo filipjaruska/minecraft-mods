@@ -6,6 +6,11 @@ hash = "f4015f21ab6f4c3dacbf58427c1216a01dd497dce7334ae427b41340690b6b5b"
 metafile = true
 
 [[files]]
+file = "mods/byzantine-styles-pack-for-minecolonies.pw.toml"
+hash = "3c9f2423bdf7dcfdcc34dcb4a005b91daad32d65e95305875fe80286b45e1f02"
+metafile = true
+
+[[files]]
 file = "mods/connector.pw.toml"
 hash = "0a4d0034c5a1379d5aa57c0a104aaa2adbb98f1e2b89d4ec0b7ef68df2e16a1a"
 metafile = true

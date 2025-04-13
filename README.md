@@ -4,7 +4,7 @@ A custom Minecraft modpack for Minecraft 1.21.1 on NeoForge.
 
 ## Download Latest Release
 
-The latest release can be downloaded from the [Releases page](https://github.com/filipjaruska/minecraft-mods/releases/latest).
+The latest release can be downloaded from [here](https://github.com/filipjaruska/minecraft-mods/releases/latest).
 
 ## Overview
 

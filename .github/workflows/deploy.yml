@@ -24,13 +24,13 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: ">=1.19.0"
-          cache: false
+          cache: false # Disable Go module caching since this is not a Go project
 
       - name: Install Packwiz
         run: |
           go install github.com/packwiz/packwiz@latest
-          echo "Packwiz version:"
-          packwiz version
+          echo "Verifying packwiz installation:"
+          packwiz --help | head -n 3
 
       - name: Set release version
         id: version
@@ -92,6 +92,12 @@ jobs:
       - name: Generate CurseForge Export (if possible)
         continue-on-error: true
         run: |
+          # Show available commands first
+          echo "Available packwiz commands:"
+          packwiz --help
+
+          # Try to export using curseforge command
+          echo "Running packwiz curseforge export..."
           packwiz curseforge export --output "FriendsModpack-CF-${{ env.VERSION }}.zip" || echo "Packwiz export failed"
 
           echo "Working directory contents:"

@@ -196,3 +196,4 @@ Write-Host "Cleaning up temporary files..."
 Remove-Item -Path $modpackTemp -Recurse -Force
 Remove-Item -Path "mod_downloads" -Recurse -Force
 Remove-Item -Path $TEMP_WORKSPACE -Recurse -Force
+Remove-Item -Path "mods_list.txt" -Recurse -Force

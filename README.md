@@ -15,6 +15,10 @@ This modpack uses [packwiz](https://packwiz.infra.link/tutorials/creating/gettin
 1. Install Go (1.19 or newer) from https://golang.org/dl/
 2. Run in terminal: `go install github.com/packwiz/packwiz@latest`
 
+### Building the Modpack
+
+Run `.\build-local.ps1` to build the game locally
+
 ## Mod Management
 
 ```bash

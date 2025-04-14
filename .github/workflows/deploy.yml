@@ -115,7 +115,7 @@ jobs:
           # Create directory for downloading non-CurseForge mods
           mkdir -p mod_downloads
 
-          # Start creating the manifest.json file
+          # Start creating the manifest.json file with overrides property
           cat > modpack_temp/manifest.json << EOF
           {
             "minecraft": {
@@ -132,6 +132,7 @@ jobs:
             "name": "Friends Modpack",
             "version": "${{ env.VERSION }}",
             "author": "filipjaruska",
+            "overrides": "overrides",
             "files": [
           EOF
 

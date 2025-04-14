@@ -112,6 +112,14 @@ jobs:
           cp index.toml modpack_temp/overrides/
           cp mods_list.txt modpack_temp/
 
+          # Copy config files if they exist
+          if [ -d "config" ]; then
+            echo "Copying configuration files..."
+            cp -r config/* modpack_temp/overrides/config/
+            echo "Config directory contents:"
+            ls -la modpack_temp/overrides/config/
+          fi
+
           # Create directory for downloading non-CurseForge mods
           mkdir -p mod_downloads
 

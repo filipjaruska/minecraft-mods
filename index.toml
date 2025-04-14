@@ -21,6 +21,11 @@ hash = "3f51958fd157c5701142d66dab494d069ae2cb4628368e2e5faf42cdf726f42c"
 metafile = true
 
 [[files]]
+file = "mods/better-brightness-slider-respawn.pw.toml"
+hash = "b4f888d4ffabf817f021e2d2549131c81d0664d19ae281a747f30916b255125e"
+metafile = true
+
+[[files]]
 file = "mods/blockui.pw.toml"
 hash = "f4015f21ab6f4c3dacbf58427c1216a01dd497dce7334ae427b41340690b6b5b"
 metafile = true
@@ -38,6 +43,11 @@ metafile = true
 [[files]]
 file = "mods/domum-ornamentum.pw.toml"
 hash = "757d82d85e87524e67e5f86a0e662b1b1263846d73d98f4da098730ee499ecdf"
+metafile = true
+
+[[files]]
+file = "mods/embeddium.pw.toml"
+hash = "732230fce4618b7b3f399e48a9fa632731ebbf4226e39cbcdac06586be15dd5f"
 metafile = true
 
 [[files]]

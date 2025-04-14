@@ -1,0 +1,19 @@
+# Local build artifacts
+FriendsModpack-*.zip
+modpack_temp/
+mod_downloads/
+mods_list.txt
+temp_workspace/
+
+# Temporary files
+*.tmp
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.iml

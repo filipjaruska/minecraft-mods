@@ -1,0 +1,98 @@
+[advanced]
+	# Show the list of bookmarks next to open GUIs.
+	bookmarkOverlayEnabled = true
+	# Give items instead of showing the recipe.
+	cheatItemsEnabled = false
+	# Hide and unhide ingredients by clicking them in the ingredient list.
+	editModeEnabled = false
+	# Show the ingredient filter text field at the bottom center of the screen.
+	filterTextFieldEnabled = true
+	# Display ingredient counts as number of stacks in recipe lookup mode.
+	ingredientCountsInRecipeLookup = false
+	# Show the + button in recipe catalysts to enable cycling.
+	recipeTransferButtonEnabled = true
+	# Display runtime optimization warnings in chat.
+	runtimeOptimizationsWarningEnabled = true
+	# Show the bookmark button in recipe layouts.
+	showBookmarkButton = true
+	# Show the recipe transfer button in recipe layouts.
+	showRecipeTransferButton = true
+	# How to search for ingredients in the ingredient list.
+	#Allowed Values: ENABLED, REQUIRE_PREFIX, DISABLED
+	searchMode = "ENABLED"
+	# How to search for recipes in the recipe layout.
+	#Allowed Values: ENABLED, REQUIRE_PREFIX, DISABLED
+	recipeSearchMode = "ENABLED"
+	# Hide ingredient in the ingredient list when the mode is enabled.
+	hideModeEnabled = false
+
+	[advanced.rendering]
+		# Level of opacity of the ingredient grid overlay (0 = no background).
+		backgroundAlpha = 0
+		# Background color of the recipe layout.
+		backgroundColorRecipe = "5000820"
+		# How to display item stacks to craft in the output slot of crafting recipes.
+		#Allowed Values: ITEM_MODEL, ITEM_FRAME, DISABLED
+		craftingScreenOutputSlotBehavior = "ITEM_MODEL"
+		# How to display JEI tooltips
+		#Allowed Values: FOLLOW_MOUSE, FIXED_POSITION
+		displayTooltipsPreference = "FOLLOW_MOUSE"
+		# Display ingredient counts as number of individual units, instead of stacks.
+		displayIngredientsCountAsUnits = false
+		# Add a glow effect to focused ingredients in the ingredient grid overlay.
+		enableFocusedGlowingEffect = true
+		# Use the maximum possible recipe lookup area.
+		fillRecipeViewArea = false
+		# Maximum width in pixels of the recipe lookup area.
+		maxRecipeGuiWidth = 420
+		# Maximum height in pixels of the recipe lookup area.
+		maxRecipeGuiHeight = 350
+		# Background color of selected ingredients in the ingredient grid overlay.
+		selectedColor = "FFEBA1FF"
+
+[colors]
+	# Color values to search for. Include alpha (if you don't, full alpha will be assumed).
+	# Format: Color name, Color value without #. For example: "white, FFFFFF".
+	searchColors = ["white, FFFFFF", "light_blue, 00A7E2", "cyan, 00AEEF"]
+
+[sorting]
+	# Sorting order for ingredients in the ingredient list.
+	#Allowed Values: ITEM_ID, DISPLAY_NAME, INGREDIENT_TYPE_ALPHABETICAL, INGREDIENT_TYPE_DISPLAY_NAME
+	ingredientSortStages = ["INGREDIENT_TYPE_ALPHABETICAL", "DISPLAY_NAME"]
+
+[search]
+	# Search term to highlight special keys.
+	#Allowed Values: ENABLED, REQUIRE_PREFIX, DISABLED
+	prefixRequiredForModNameSearch = "REQUIRE_PREFIX"
+	# Search term prefix for matching mod names.
+	modNameSearchMode = "@"
+	# Search term to search by tooltip.
+	tooltipSearchMode = "#"
+	# Search term to search by tag names.
+	tagSearchMode = "$"
+	# Search term to search by creative tab name.
+	creativeTabSearchMode = "%%"
+	# Search term to search by colors.
+	colorSearchMode = "^"
+	# Search term prefix to show registry names.
+	registryNameSearchMode = "&"
+
+	[search.advanced]
+		# Search terms for matching all recipes that take longer than usual to craft (that require multiple steps, or performed in special machines).
+		complexSearchMode = "!!"
+		# Search term for matching all recipes that output fluids.
+		fluidSearchMode = "~"
+		# Search term for matching all recipes that use fluid ingredients.
+		fluidTagSearchMode = "~"
+		# Search term for matching all recipes that can be crafted in the player's inventory.
+		instantSearchMode = "@"
+
+[tooltips]
+	# Display item's mod name in tooltip.
+	showModInTooltip = true
+	# Show the name of the GUI view and the ID of a fluid/item in tooltip.
+	showDebugInfo = false
+
+[accessibility]
+	# Make recipes appear with a red border when they are not craftable, or with a green border when they are.
+	showCompletedRecipeBorder = true

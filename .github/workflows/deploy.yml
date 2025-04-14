@@ -112,6 +112,12 @@ jobs:
           cp index.toml modpack_temp/overrides/
           cp mods_list.txt modpack_temp/
 
+          # Copy options.txt to disable narrator on first launch
+          if [ -f "options.txt" ]; then
+            echo "Copying options.txt to disable narrator..."
+            cp options.txt modpack_temp/overrides/
+          fi
+
           # Copy config files if they exist
           if [ -d "config" ]; then
             echo "Copying configuration files..."

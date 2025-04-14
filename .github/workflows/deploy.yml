@@ -104,11 +104,16 @@ jobs:
           ls -la mods/
 
           # Create modpack structure
-          mkdir -p modpack_temp/overrides
-          cp -r mods modpack_temp/overrides/
+          mkdir -p modpack_temp/overrides/mods
+          mkdir -p modpack_temp/overrides/config
+
+          # Copy packwiz files for reference (these won't be used by CurseForge)
           cp pack.toml modpack_temp/overrides/
           cp index.toml modpack_temp/overrides/
           cp mods_list.txt modpack_temp/
+
+          # Create directory for downloading non-CurseForge mods
+          mkdir -p mod_downloads
 
           # Start creating the manifest.json file
           cat > modpack_temp/manifest.json << EOF
@@ -130,8 +135,8 @@ jobs:
             "files": [
           EOF
 
-          # Parse all mod toml files and extract CurseForge IDs
-          echo "Extracting CurseForge mod IDs from TOML files..."
+          # Parse all mod toml files
+          echo "Processing mod files..."
           FIRST_MOD=true
           for MOD_FILE in mods/*.pw.toml; do
             if grep -q "mode = \"metadata:curseforge\"" "$MOD_FILE"; then
@@ -158,7 +163,27 @@ jobs:
           EOF
               fi
             else
-              echo "Warning: $MOD_FILE is not a CurseForge mod, it will be included in overrides"
+              echo "Processing non-CurseForge mod: $MOD_FILE"
+              
+              # Extract download URL and filename from .pw.toml
+              URL=$(grep -oP 'url\s*=\s*"\K[^"]+' "$MOD_FILE")
+              FILENAME=$(grep -oP 'filename\s*=\s*"\K[^"]+' "$MOD_FILE")
+              
+              if [ ! -z "$URL" ] && [ ! -z "$FILENAME" ]; then
+                echo "Downloading $FILENAME from $URL"
+                # Download the actual mod .jar file
+                curl -L -o "mod_downloads/$FILENAME" "$URL"
+                
+                if [ -f "mod_downloads/$FILENAME" ]; then
+                  echo "Successfully downloaded $FILENAME"
+                  # Copy the downloaded .jar to the overrides/mods directory
+                  cp "mod_downloads/$FILENAME" "modpack_temp/overrides/mods/"
+                else
+                  echo "Failed to download $FILENAME"
+                fi
+              else
+                echo "Warning: Could not extract download information from $MOD_FILE"
+              fi
             fi
           done
 
@@ -170,6 +195,9 @@ jobs:
 
           echo "Manifest.json content:"
           cat modpack_temp/manifest.json
+
+          echo "Overrides mods directory content:"
+          ls -la modpack_temp/overrides/mods/
 
           # Create modpack ZIP
           cd modpack_temp

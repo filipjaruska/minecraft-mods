@@ -73,6 +73,11 @@ hash = "1cfa183bba77b45e4ae2abea9449c5f4f33b1af56e8b87166525fc56216daba4"
 metafile = true
 
 [[files]]
+file = "mods/controlling.pw.toml"
+hash = "42ffb6f5835250003da6ca3667ff751709ea295faee43b49c365b0f6c1e8f4d8"
+metafile = true
+
+[[files]]
 file = "mods/embeddium.pw.toml"
 hash = "359e68603f22e47e32c1136dee0c1785929f9753b5bcb2ab62ce022abc025ad9"
 metafile = true
@@ -115,6 +120,16 @@ metafile = true
 [[files]]
 file = "mods/patchouli.pw.toml"
 hash = "b7fec81bc4939896a1feb78c16cb17fd3140092e7ceca993bf982387e6b7bdca"
+metafile = true
+
+[[files]]
+file = "mods/searchables.pw.toml"
+hash = "6c0fac550bb053ee2728144a28819835823dcc6d04ad7897750431fe55100e53"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries.pw.toml"
+hash = "7fd24a5dd783703c5b731c6e659ec46df7cc9e378bb8dd5fcc125d38e85870b4"
 metafile = true
 
 [[files]]

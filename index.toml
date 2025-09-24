@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = ".github/workflows/deploy.yml"
-hash = "4a0d590bcac6d247cf4f57135d4152f351af4d783416ce8dd04e9a4a72798bef"
+hash = "7386f20a059d1883bda4e85b46db27284e05a6b9547206136a9374aa6d5bc0f0"
 
 [[files]]
 file = "README.md"
@@ -30,7 +30,7 @@ hash = "f1beee5079f1684f0575e196caa590c0a0c442222a0e34345a5f8c9592a3c4c5"
 
 [[files]]
 file = "mods/better-brightness-slider-respawn.pw.toml"
-hash = "f8d4e02d40482788e280de4ed4108f51b57b9b67b17a00a20d2ef887d910ab05"
+hash = "b992c40c99214c0e16e6dac26705beb48ebb77f79165620a978219b2899bd9ba"
 metafile = true
 
 [[files]]
@@ -64,18 +64,8 @@ hash = "252659cbaad2f31f723bf31d8ede250dc4b9c821c469f47b77d74e23864b4b45"
 metafile = true
 
 [[files]]
-file = "mods/multi-piston.pw.toml"
-hash = "7a4d4363f3f54b24e4cf35e99ef3be245afb42d2a4f409a4f3604a214718add6"
-metafile = true
-
-[[files]]
 file = "mods/patchouli.pw.toml"
-hash = "2a4798ec38f3fb35fbf4adb1875387e2af8b75370fc96ec2bf595a37b8c347c0"
-metafile = true
-
-[[files]]
-file = "mods/structurize.pw.toml"
-hash = "8ffd3aeb97a0014cc9774781b6e7dd0f18c75d065e75a346bc4d59ba3aa1aa80"
+hash = "b7fec81bc4939896a1feb78c16cb17fd3140092e7ceca993bf982387e6b7bdca"
 metafile = true
 
 [[files]]

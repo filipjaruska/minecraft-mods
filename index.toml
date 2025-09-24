@@ -13,8 +13,28 @@ file = "build-local.ps1"
 hash = "e1757ed3472f766983bde81a78b8e8188c366bfa819786bd9e30a9b7c5f74871"
 
 [[files]]
+file = "config/MouseTweaks.cfg"
+hash = "050c8d951c1e824b57edb111e2214ded4a601ad3e3f5a5714ce196187229669a"
+
+[[files]]
+file = "config/appleskin-client.json"
+hash = "91061278031a47868c2f189c459725e5e1432833940b28a1c8f4af6fd45c903b"
+
+[[files]]
+file = "config/betteradvancements.cfg"
+hash = "6ae9accbccfa23f6663c792fe47b59ff7d7b122c04097c7ebb2fd4500b6355b3"
+
+[[files]]
 file = "config/embeddium-options.json"
 hash = "639756c23736ca10e059deaf27a86774f5b3bbb3845e32640fbe27611188307c"
+
+[[files]]
+file = "config/inventorysorter.cfg"
+hash = "880a9fc0a141b96520b8bb3507da2f2bfd798e3846942144af2bf827534cfaa9"
+
+[[files]]
+file = "config/jade-client.json"
+hash = "9cfe0d775adf39598374f608574b0856cd1da05ed9b22ba763f167e5a8cc5253"
 
 [[files]]
 file = "config/jei-client.toml"
@@ -25,8 +45,22 @@ file = "config/modernfix-mixins.properties"
 hash = "39d6c38731a778358c7d9a983072276b495395ebad6b3a2693f0edbdbc207ace"
 
 [[files]]
-file = "consider.md"
-hash = "f1beee5079f1684f0575e196caa590c0a0c442222a0e34345a5f8c9592a3c4c5"
+file = "config/xaerominimap.txt"
+hash = "2dd5895b6f0975e681bace136ea44fe82656c22f46d633c5a7460f79eb2ef461"
+
+[[files]]
+file = "config/xaeroworldmap.txt"
+hash = "c32a12592cbc087de805ab6c685bbd8c14b4a63c4120eb2a2e2d40701556c813"
+
+[[files]]
+file = "mods/appleskin.pw.toml"
+hash = "4ca8b963965342aafdfe251e5306259eb9cf459d43e46d9695974dcff01465aa"
+metafile = true
+
+[[files]]
+file = "mods/better-advancements.pw.toml"
+hash = "bb2700ce31fc7cd121ecf07f106302303ee366b7573b77bbdd97eee955233cda"
+metafile = true
 
 [[files]]
 file = "mods/better-brightness-slider-respawn.pw.toml"
@@ -54,6 +88,16 @@ hash = "7afdc4a1e9619ea434e5c5a05819dd12653978d0781eaeb1fa6257086c79e827"
 metafile = true
 
 [[files]]
+file = "mods/inventory-sorter.pw.toml"
+hash = "f53dd9cb283838a6a6c8ef6951552ade95435e84f0c7a139b99983b66e91191d"
+metafile = true
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "6b3f722168fa57e23fca5441d9b74a11194d9252625d6bf0898c4d212f99380a"
+metafile = true
+
+[[files]]
 file = "mods/jei.pw.toml"
 hash = "be72ab7c925766fc00775f1f38eff76b820004f8d5c99db3a41fb85063f4bb90"
 metafile = true
@@ -64,8 +108,23 @@ hash = "252659cbaad2f31f723bf31d8ede250dc4b9c821c469f47b77d74e23864b4b45"
 metafile = true
 
 [[files]]
+file = "mods/mouse-tweaks.pw.toml"
+hash = "2bdee19bd39b4bd411d7c858a7978ca9d2bdda41c1cf15920ea6be0014663f79"
+metafile = true
+
+[[files]]
 file = "mods/patchouli.pw.toml"
 hash = "b7fec81bc4939896a1feb78c16cb17fd3140092e7ceca993bf982387e6b7bdca"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-minimap.pw.toml"
+hash = "3c9d3c4a6cf4016aebd324fd4cdf6332da89c7f41912e41f56f08c6947d66e2d"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-world-map.pw.toml"
+hash = "feb67f4e3a254fafda303ccdb989354524aaa29bd26f1cc0013764b9f93040d9"
 metafile = true
 
 [[files]]

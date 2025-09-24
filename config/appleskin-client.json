@@ -1,0 +1,13 @@
+{
+  "showFoodExhaustionHudOverlay": true,
+  "showFoodSaturationHudOverlay": true,
+  "showFoodValueHudOverlay": true,
+  "showFoodValueHudOverlayWhenOffhand": true,
+  "showFoodValuesInTooltips": true,
+  "showFoodSaturationInTooltips": true,
+  "showFoodExhaustionInTooltips": true,
+  "enableModCompatibilityTooltips": true,
+  "showFoodHealthRatio": true,
+  "enableExhaustionHudUnderlay": true,
+  "enableSaturationHudUnderlay": true
+}

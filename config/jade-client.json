@@ -1,0 +1,27 @@
+{
+  "general": {
+    "displayTooltip": true,
+    "displayBlocks": true,
+    "displayEntities": true,
+    "displayBosses": true,
+    "displayFluids": true,
+    "hideFromDebugScreen": true,
+    "hideFromTabList": true,
+    "enableAccessibilityPlugin": true,
+    "flipMainHand": false,
+    "reachDistance": 20
+  },
+  "overlay": {
+    "overlayPosX": 0.5,
+    "overlayPosY": 1.0,
+    "overlayScale": 1.0,
+    "overlayTheme": "dark",
+    "alpha": 0.8,
+    "animation": true
+  },
+  "formatting": {
+    "modName": "blue",
+    "blockName": "white",
+    "fluidName": "gray"
+  }
+}

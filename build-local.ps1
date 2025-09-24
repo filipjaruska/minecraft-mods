@@ -88,7 +88,7 @@ $manifestContent = @"
     "version": "1.21.1",
     "modLoaders": [
       {
-        "id": "neoforge-21.1.147",
+        "id": "neoforge-21.1.169",
         "primary": true
       }
     ]
@@ -184,9 +184,13 @@ if (Test-Path $zipFilePath) {
     Remove-Item -Path $zipFilePath -Force
 }
 
+# Get absolute paths for ZIP creation
+$modpackTempFullPath = (Resolve-Path $modpackTemp).Path
+$zipFileFullPath = Join-Path (Get-Location) $zipFilePath
+
 # Create the ZIP file
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::CreateFromDirectory($modpackTemp, $zipFilePath)
+[System.IO.Compression.ZipFile]::CreateFromDirectory($modpackTempFullPath, $zipFileFullPath)
 
 Write-Host "Done! Modpack created at: $zipFilePath"
 Write-Host "You can import this file into CurseForge launcher."

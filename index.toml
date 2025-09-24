@@ -1,106 +1,83 @@
 hash-format = "sha256"
 
 [[files]]
-file = "mods/apotheosis.pw.toml"
-hash = "eb8612ce21dd08ab5a673fcc33003837c4ee9aaf033aae48d979b739e5ca4fdd"
-metafile = true
+file = ".github/workflows/deploy.yml"
+hash = "4a0d590bcac6d247cf4f57135d4152f351af4d783416ce8dd04e9a4a72798bef"
 
 [[files]]
-file = "mods/apothic-attributes.pw.toml"
-hash = "87e280f47e37b3ca627fa0ded5113cbdab03c57a4bb78a3647729fd90500a405"
-metafile = true
+file = "README.md"
+hash = "51034648403426a15c85e664617f4587cb32078196e8ba14c6f1404b3421306c"
 
 [[files]]
-file = "mods/apothic-enchanting.pw.toml"
-hash = "f979572c1e0b3b50c37fd99430cc2f53cd6b73045927a1ca6cc378991c985e6d"
-metafile = true
+file = "build-local.ps1"
+hash = "e1757ed3472f766983bde81a78b8e8188c366bfa819786bd9e30a9b7c5f74871"
 
 [[files]]
-file = "mods/apothic-spawners.pw.toml"
-hash = "3f51958fd157c5701142d66dab494d069ae2cb4628368e2e5faf42cdf726f42c"
-metafile = true
+file = "config/embeddium-options.json"
+hash = "639756c23736ca10e059deaf27a86774f5b3bbb3845e32640fbe27611188307c"
+
+[[files]]
+file = "config/jei-client.toml"
+hash = "1b29c0e54bc85f1a510cf96b640123299eda0afedfd4b3a4116ed629c3dc77b6"
+
+[[files]]
+file = "config/modernfix-mixins.properties"
+hash = "39d6c38731a778358c7d9a983072276b495395ebad6b3a2693f0edbdbc207ace"
+
+[[files]]
+file = "consider.md"
+hash = "f1beee5079f1684f0575e196caa590c0a0c442222a0e34345a5f8c9592a3c4c5"
 
 [[files]]
 file = "mods/better-brightness-slider-respawn.pw.toml"
-hash = "b4f888d4ffabf817f021e2d2549131c81d0664d19ae281a747f30916b255125e"
-metafile = true
-
-[[files]]
-file = "mods/blockui.pw.toml"
-hash = "f4015f21ab6f4c3dacbf58427c1216a01dd497dce7334ae427b41340690b6b5b"
-metafile = true
-
-[[files]]
-file = "mods/byzantine-styles-pack-for-minecolonies.pw.toml"
-hash = "3c9f2423bdf7dcfdcc34dcb4a005b91daad32d65e95305875fe80286b45e1f02"
+hash = "f8d4e02d40482788e280de4ed4108f51b57b9b67b17a00a20d2ef887d910ab05"
 metafile = true
 
 [[files]]
 file = "mods/connector.pw.toml"
-hash = "0a4d0034c5a1379d5aa57c0a104aaa2adbb98f1e2b89d4ec0b7ef68df2e16a1a"
-metafile = true
-
-[[files]]
-file = "mods/domum-ornamentum.pw.toml"
-hash = "757d82d85e87524e67e5f86a0e662b1b1263846d73d98f4da098730ee499ecdf"
+hash = "1cfa183bba77b45e4ae2abea9449c5f4f33b1af56e8b87166525fc56216daba4"
 metafile = true
 
 [[files]]
 file = "mods/embeddium.pw.toml"
-hash = "732230fce4618b7b3f399e48a9fa632731ebbf4226e39cbcdac06586be15dd5f"
+hash = "359e68603f22e47e32c1136dee0c1785929f9753b5bcb2ab62ce022abc025ad9"
 metafile = true
 
 [[files]]
 file = "mods/ferritecore.pw.toml"
-hash = "942b02525962980b6176677cca162d27c1210b686985ad11db0055fe39d42a7d"
+hash = "eba3526b8365fccad34dac4e0a3ad18e5861c01eea5c4e8c814b769756c9bdf7"
 metafile = true
 
 [[files]]
 file = "mods/forgified-fabric-api.pw.toml"
-hash = "c604862c7db098f8edcfa6aa1ebc4e235b3008fdbc61450c0da9c3c234513a54"
+hash = "7afdc4a1e9619ea434e5c5a05819dd12653978d0781eaeb1fa6257086c79e827"
 metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "c344b0630eedfa7f8ed24e7cb916e49c231df456c40d20fc2b5fc0b675fb6517"
-metafile = true
-
-[[files]]
-file = "mods/minecolonies.pw.toml"
-hash = "25655321301c8eb38ba06611730a61efea316d8caa0ed2a2a4c8dab3cdeb25ca"
+hash = "be72ab7c925766fc00775f1f38eff76b820004f8d5c99db3a41fb85063f4bb90"
 metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"
-hash = "c53101abeff70bbb6d5784991133efb61867d34491762bc13a20f215105b6a83"
+hash = "252659cbaad2f31f723bf31d8ede250dc4b9c821c469f47b77d74e23864b4b45"
 metafile = true
 
 [[files]]
 file = "mods/multi-piston.pw.toml"
-hash = "1dc16fe98446b86b94a8bfa08f07accf11a7b07fc39730b2e7b32560dcaf1c45"
+hash = "7a4d4363f3f54b24e4cf35e99ef3be245afb42d2a4f409a4f3604a214718add6"
 metafile = true
 
 [[files]]
 file = "mods/patchouli.pw.toml"
-hash = "b6aadb8e32f440b51cd958b68eee57b9fe5bab26c7cf2f56d0340cf7f593030f"
-metafile = true
-
-[[files]]
-file = "mods/placebo.pw.toml"
-hash = "0569bfe0d8f1637f9a45d07bfc540303700b815a6f1cc3ce85a1d5fbc3a750f7"
-metafile = true
-
-[[files]]
-file = "mods/projecte.pw.toml"
-hash = "d5888ffcf49a86a8796d575aad15e98c148a65bcd71c9e06670b31aa40668e9c"
+hash = "2a4798ec38f3fb35fbf4adb1875387e2af8b75370fc96ec2bf595a37b8c347c0"
 metafile = true
 
 [[files]]
 file = "mods/structurize.pw.toml"
-hash = "5aa43903423c9fec48bcd375ab17890fe86c66a2a82574b8ebd7a4f5a5e29720"
+hash = "8ffd3aeb97a0014cc9774781b6e7dd0f18c75d065e75a346bc4d59ba3aa1aa80"
 metafile = true
 
 [[files]]
-file = "mods/towntalk.pw.toml"
-hash = "a7074e8e499d34f5ce633dbd33f818e376dd1941ec5b1d97a33acd019df69b5a"
-metafile = true
+file = "options.txt"
+hash = "14b018f7849e1a91fd658035c448e019611602ca6943679044cfac509fe36258"

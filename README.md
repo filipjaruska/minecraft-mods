@@ -1,6 +1,6 @@
 # Friends Modpack
 
-A custom Minecraft modpack for Minecraft 1.21.1 on NeoForge.
+[Note] Keep master vanilla ish with qol mods.
 
 ## Download Latest Release
 

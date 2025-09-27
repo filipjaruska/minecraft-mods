@@ -88,7 +88,7 @@ $manifestContent = @"
     "version": "1.21.1",
     "modLoaders": [
       {
-        "id": "neoforge-21.1.169",
+        "id": "neoforge-21.1.205",
         "primary": true
       }
     ]

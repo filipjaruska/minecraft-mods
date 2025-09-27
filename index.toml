@@ -53,6 +53,11 @@ file = "config/xaeroworldmap.txt"
 hash = "c32a12592cbc087de805ab6c685bbd8c14b4a63c4120eb2a2e2d40701556c813"
 
 [[files]]
+file = "mods/amendments.pw.toml"
+hash = "d3dcc82d142dadd15157ade28c7b2d30dea2307ff6c7a6807834e957a5705a68"
+metafile = true
+
+[[files]]
 file = "mods/appleskin.pw.toml"
 hash = "4ca8b963965342aafdfe251e5306259eb9cf459d43e46d9695974dcff01465aa"
 metafile = true
@@ -83,6 +88,11 @@ hash = "359e68603f22e47e32c1136dee0c1785929f9753b5bcb2ab62ce022abc025ad9"
 metafile = true
 
 [[files]]
+file = "mods/fadeless.pw.toml"
+hash = "0ff86cfc1e0a63f53bc702c6538d1294fafdad81df609ce5b478d09817edcc6e"
+metafile = true
+
+[[files]]
 file = "mods/ferritecore.pw.toml"
 hash = "eba3526b8365fccad34dac4e0a3ad18e5861c01eea5c4e8c814b769756c9bdf7"
 metafile = true
@@ -104,7 +114,12 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "be72ab7c925766fc00775f1f38eff76b820004f8d5c99db3a41fb85063f4bb90"
+hash = "8fac2e3bd398e8f2e9c4211c0ca2a85ae0f73c7f1b3400ae4d7bc5b0a5c352e0"
+metafile = true
+
+[[files]]
+file = "mods/lithium.pw.toml"
+hash = "908cbf89e774b114d1dc3aef4806c9d2d782cfd314be001718bb690af9b074a8"
 metafile = true
 
 [[files]]
@@ -118,13 +133,28 @@ hash = "2bdee19bd39b4bd411d7c858a7978ca9d2bdda41c1cf15920ea6be0014663f79"
 metafile = true
 
 [[files]]
+file = "mods/no-chat-reports.pw.toml"
+hash = "26aca541ff9f149ef8bfdf69efb258d23339affd9fba4612bddd01e759fb0ffd"
+metafile = true
+
+[[files]]
 file = "mods/patchouli.pw.toml"
 hash = "b7fec81bc4939896a1feb78c16cb17fd3140092e7ceca993bf982387e6b7bdca"
 metafile = true
 
 [[files]]
+file = "mods/rubidium-extra.pw.toml"
+hash = "b4ea87bc5953a1a0eec5207bb3182285e3301e87afa64fb1c8a4a8e993e915ea"
+metafile = true
+
+[[files]]
 file = "mods/searchables.pw.toml"
 hash = "6c0fac550bb053ee2728144a28819835823dcc6d04ad7897750431fe55100e53"
+metafile = true
+
+[[files]]
+file = "mods/selene.pw.toml"
+hash = "635019318925aec1636d711af1e9788fe2127c5e21cce4f7ff416cc4a89be46c"
 metafile = true
 
 [[files]]

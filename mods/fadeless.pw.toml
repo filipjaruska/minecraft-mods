@@ -1,0 +1,13 @@
+name = "Fadeless"
+filename = "fadeless-neoforge-1.1.0.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "76cb5746d6e93af2c74a06251100aad27363637f"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 5585561
+project-id = 861310

@@ -54,12 +54,12 @@ hash = "c32a12592cbc087de805ab6c685bbd8c14b4a63c4120eb2a2e2d40701556c813"
 
 [[files]]
 file = "mods/amendments.pw.toml"
-hash = "d3dcc82d142dadd15157ade28c7b2d30dea2307ff6c7a6807834e957a5705a68"
+hash = "bf68b426ab3361b1257ff1c3a8c0355475807d5f18332eebaca7754bcef945b3"
 metafile = true
 
 [[files]]
 file = "mods/appleskin.pw.toml"
-hash = "4ca8b963965342aafdfe251e5306259eb9cf459d43e46d9695974dcff01465aa"
+hash = "9cba3cb68a8d5b671364681dc6f66551fe5f1cb7daa16e74201557d7604b19ee"
 metafile = true
 
 [[files]]
@@ -74,7 +74,7 @@ metafile = true
 
 [[files]]
 file = "mods/connector.pw.toml"
-hash = "1cfa183bba77b45e4ae2abea9449c5f4f33b1af56e8b87166525fc56216daba4"
+hash = "e487d315e7a44f917cd1ddc2da1b26e65968bc19fe6c0ac868dab3d2bb97bbf1"
 metafile = true
 
 [[files]]
@@ -94,37 +94,37 @@ metafile = true
 
 [[files]]
 file = "mods/ferritecore.pw.toml"
-hash = "eba3526b8365fccad34dac4e0a3ad18e5861c01eea5c4e8c814b769756c9bdf7"
+hash = "dff824171060c79b327a4880c2f0546c727a041a489ef3af643ec2dcd9cd0c48"
 metafile = true
 
 [[files]]
 file = "mods/forgified-fabric-api.pw.toml"
-hash = "7afdc4a1e9619ea434e5c5a05819dd12653978d0781eaeb1fa6257086c79e827"
+hash = "a830f9e0393be04dd0a8a3a845b27e90cd34961887403c800e296182283d9c3e"
 metafile = true
 
 [[files]]
 file = "mods/inventory-sorter.pw.toml"
-hash = "f53dd9cb283838a6a6c8ef6951552ade95435e84f0c7a139b99983b66e91191d"
+hash = "01d2dc33988b6daf0fad9a63b7474832d3876455d1119d6c6e1dde9d203ad718"
 metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "6b3f722168fa57e23fca5441d9b74a11194d9252625d6bf0898c4d212f99380a"
+hash = "e739b7355ab3cfba2e729f8f0b51eafc3d9c3afb19ee30ac7b311631610c5e66"
 metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "8fac2e3bd398e8f2e9c4211c0ca2a85ae0f73c7f1b3400ae4d7bc5b0a5c352e0"
+hash = "d068154533d9a999acbb4008f7c33d307b583d2e6db7122a69fc02921ffdb411"
 metafile = true
 
 [[files]]
 file = "mods/lithium.pw.toml"
-hash = "908cbf89e774b114d1dc3aef4806c9d2d782cfd314be001718bb690af9b074a8"
+hash = "7e594ed71fde064ffc4c6f404cc526c7fc232d9933571499a4f259f8b7cd78b3"
 metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"
-hash = "252659cbaad2f31f723bf31d8ede250dc4b9c821c469f47b77d74e23864b4b45"
+hash = "161318b6de204d2528485fe7e401ce522f0be1d62eb5e15b9ac2ba10caf0771a"
 metafile = true
 
 [[files]]
@@ -154,22 +154,22 @@ metafile = true
 
 [[files]]
 file = "mods/selene.pw.toml"
-hash = "635019318925aec1636d711af1e9788fe2127c5e21cce4f7ff416cc4a89be46c"
+hash = "8655fc3442ebf49db850487b7ba0452e16321d03d3b834f82d3a24f4932192b8"
 metafile = true
 
 [[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "7fd24a5dd783703c5b731c6e659ec46df7cc9e378bb8dd5fcc125d38e85870b4"
+hash = "5ae37237ebb52d98620dacb75aa2ffa9c1ad25e4e7458283bbd3382907be9384"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "3c9d3c4a6cf4016aebd324fd4cdf6332da89c7f41912e41f56f08c6947d66e2d"
+hash = "85d6b116578d44c074435499759f7be6090f1b2c131f129ae3127939591c1b78"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "feb67f4e3a254fafda303ccdb989354524aaa29bd26f1cc0013764b9f93040d9"
+hash = "01562e27f0c92ebf98eb6aaaace3c14fef18c734a6c65bda8101b8d3c640e12f"
 metafile = true
 
 [[files]]

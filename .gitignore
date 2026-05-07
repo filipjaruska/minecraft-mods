@@ -1,5 +1,6 @@
 # Local build artifacts
 FriendsModpack-*.zip
+vanilla-extra-*
 modpack_temp/
 mod_downloads/
 mods_list.txt

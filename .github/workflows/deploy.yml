@@ -68,16 +68,14 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ env.PACK_NAME }} v${{ env.VERSION }}
+          name: ${{ env.PACK_NAME }} ${{ env.MC_VER }}+v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
           body: |
-            ## ${{ env.PACK_NAME }} v${{ env.VERSION }}
+            ## ${{ env.PACK_NAME }} ${{ env.MC_VER }}+v${{ env.VERSION }}
 
-            ### Supported Versions
-            - **Minecraft:** ${{ env.MC_VER }}
-            - **NeoForge:** ${{ env.NEOFORGE_VER }}
+            Runs on **NeoForge:** ${{ env.NEOFORGE_VER }}
 
             ### Installation
             1. Download the CurseForge App from https://www.curseforge.com/download/app

@@ -37,7 +37,7 @@ func main() {
 	content := string(packTOML)
 	packName := parseString(content, `name\s*=\s*"([^"]+)"`)
 	if packName == "" {
-		packName = "Friends"
+		packName = "vanilla-extra"
 	}
 	mcVer := parseString(content, `minecraft\s*=\s*"([^"]+)"`)
 	loaderID := "neoforge-" + parseString(content, `neoforge\s*=\s*"([^"]+)"`)
@@ -47,8 +47,8 @@ func main() {
 	
 	// Modify names if building for server
 	if *isServer {
-		packName += " Server"
-		modpackZipName += "-Server"
+		packName += " server"
+		modpackZipName += "-server"
 	}
 
 	fmt.Printf("Building %s (%s)\n", packName, version)

@@ -1,4 +1,4 @@
-# Friends Modpack
+# Vanilla Extra Modpack
 
 Vanilla~ish with qol mods. The latest release can be downloaded from [here](https://github.com/filipjaruska/minecraft-mods/releases/latest).
 

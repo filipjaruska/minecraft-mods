@@ -119,10 +119,50 @@ func copyOverrides(isServer bool) {
 		copyFile("options.txt", filepath.Join(modpackTemp, "overrides", "options.txt"))
 	}
 
+	var clientMods []string
+	if isServer {
+		entries, _ := os.ReadDir("mods")
+		for _, entry := range entries {
+			if !entry.Type().IsRegular() || !strings.HasSuffix(entry.Name(), ".pw.toml") {
+				continue
+			}
+			contentBytes, _ := os.ReadFile(filepath.Join("mods", entry.Name()))
+			content := string(contentBytes)
+			if strings.Contains(content, `side = "client"`) || strings.Contains(content, `side="client"`) {
+				name := strings.TrimSuffix(entry.Name(), ".pw.toml")
+				// Extract the first word of the mod file (e.g. "xaeros" from "xaeros-minimap")
+				firstPart := strings.Split(name, "-")[0]
+				// Also normalize the full name to compare: "better-advancements" -> "betteradvancements"
+				normalizedFull := strings.ReplaceAll(strings.ToLower(name), "-", "")
+				clientMods = append(clientMods, strings.ToLower(firstPart), normalizedFull)
+			}
+		}
+	}
+
 	if _, err := os.Stat("config"); err == nil {
 		filepath.WalkDir("config", func(path string, d fs.DirEntry, err error) error {
 			if err == nil && !d.IsDir() {
 				rel, _ := filepath.Rel("config", path)
+				
+				if isServer {
+					lowerName := strings.ToLower(rel)
+					isClientConfig := strings.Contains(lowerName, "client") // Standard client config naming convention
+					
+					for _, modPart := range clientMods {
+						// E.g. check if "betteradvancements.cfg" contains "betteradvancements", or "xaerominimap.txt" contains "xaeros" (it doesn't, but we check "xaero" by trimming 's')
+						// To be safe with plurals like 'xaeros', we can also check if modPart without 's' is in config name
+						trimS := strings.TrimSuffix(modPart, "s")
+						if strings.Contains(lowerName, modPart) || (len(trimS) > 3 && strings.Contains(lowerName, trimS)) {
+							isClientConfig = true
+							break
+						}
+					}
+					
+					if isClientConfig {
+						return nil
+					}
+				}
+
 				copyFile(path, filepath.Join(modpackTemp, "overrides", "config", rel))
 			}
 			return nil

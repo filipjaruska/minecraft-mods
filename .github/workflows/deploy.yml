@@ -83,7 +83,7 @@ jobs:
             https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
 
             ### Mods
-            This modpack contains the latest updates. See the attached mods_list.txt for the complete list.
+            This modpack contains ${{ env.MOD_COUNT }} mods. See the attached mods_list.txt for the complete list.
           files: |
             *.zip
             mods_list.txt

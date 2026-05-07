@@ -42,7 +42,7 @@ func setupWorkspace() {
 	})
 }
 
-func processMods(packName, version, mcVer, loaderID string) (manifest, string) {
+func processMods(packName, version, mcVer, loaderID string) (manifest, string, int) {
 	manifestData := manifest{
 		ManifestType:    "minecraftModpack",
 		ManifestVersion: 1,
@@ -98,7 +98,7 @@ func processMods(packName, version, mcVer, loaderID string) (manifest, string) {
 		}
 	}
 	modListText += fmt.Sprintf("\nTotal: %d mods\n", modCount)
-	return manifestData, modListText
+	return manifestData, modListText, modCount
 }
 
 func copyOverrides() {

@@ -58,7 +58,16 @@ func main() {
 	setupWorkspace()
 
 	// 2. Extract configurations and bundle Modrinth jars
-	manifestData, modListText := processMods(packName, version, mcVer, loaderID)
+	manifestData, modListText, modCount := processMods(packName, version, mcVer, loaderID)
+
+	// Export MOD_COUNT to GitHub Actions if running in CI
+	if envFile := os.Getenv("GITHUB_ENV"); envFile != "" {
+		f, err := os.OpenFile(envFile, os.O_APPEND|os.O_WRONLY, 0644)
+		if err == nil {
+			f.WriteString(fmt.Sprintf("MOD_COUNT=%d\n", modCount))
+			f.Close()
+		}
+	}
 
 	// 3. Write out the human-readable mod list
 	check(os.WriteFile(modsListName, []byte(modListText), 0o644))
@@ -88,7 +97,13 @@ func checkPackwiz() {
 }
 
 func cleanup() {
-	for _, p := range []string{modpackTemp, tempWorkspace, modDownloads, modsListName} {
+	paths := []string{modpackTemp, tempWorkspace, modDownloads}
+	// Only delete mods_list.txt if we aren't running in a GitHub Action
+	if os.Getenv("GITHUB_ACTIONS") != "true" {
+		paths = append(paths, modsListName)
+	}
+	
+	for _, p := range paths {
 		os.RemoveAll(p)
 	}
 }

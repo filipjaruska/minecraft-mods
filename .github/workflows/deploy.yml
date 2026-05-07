@@ -62,6 +62,7 @@ jobs:
           echo "PACK_NAME=${PACK_NAME}" >> $GITHUB_ENV
 
           go run ./src
+          go run ./src -server
 
       - name: Create Release
         id: create_release
@@ -73,6 +74,10 @@ jobs:
           prerelease: false
           body: |
             ## ${{ env.PACK_NAME }} v${{ env.VERSION }}
+
+            ### Supported Versions
+            - **Minecraft:** ${{ env.MC_VER }}
+            - **NeoForge:** ${{ env.NEOFORGE_VER }}
 
             ### Installation
             1. Download the CurseForge App from https://www.curseforge.com/download/app

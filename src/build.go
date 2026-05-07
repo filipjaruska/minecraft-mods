@@ -70,18 +70,21 @@ func main() {
 	// 2. Extract configurations and bundle Modrinth jars
 	manifestData, modListText, modCount := processMods(packName, version, mcVer, loaderID, *isServer)
 
-	// Export MOD_COUNT to GitHub Actions if running in CI
+	// Export MOD_COUNT and Versions to GitHub Actions if running in CI
 	if envFile := os.Getenv("GITHUB_ENV"); envFile != "" {
 		f, err := os.OpenFile(envFile, os.O_APPEND|os.O_WRONLY, 0644)
 		if err == nil {
 			f.WriteString(fmt.Sprintf("MOD_COUNT=%d\n", modCount))
+			f.WriteString(fmt.Sprintf("MC_VER=%s\n", mcVer))
+			// extract just the neoforge version number 
+			neoVer := strings.TrimPrefix(loaderID, "neoforge-")
+			f.WriteString(fmt.Sprintf("NEOFORGE_VER=%s\n", neoVer))
 			f.Close()
 		}
 	}
 
 	// 3. Write out the human-readable mod list
 	check(os.WriteFile(modsListName, []byte(modListText), 0o644))
-	copyFile(modsListName, filepath.Join(modpackTemp, modsListName))
 
 	// 4. Inject configs and other local overrides
 	copyOverrides(*isServer)

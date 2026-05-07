@@ -57,7 +57,7 @@ func processMods(packName, version, mcVer, loaderID string, isServer bool) (mani
 		Primary bool   `json:"primary"`
 	}{{ID: loaderID, Primary: true}}
 
-	modListText := fmt.Sprintf("# Mods in %s v%s\n\nThis release includes the following mods:\n\n", packName, version)
+	modListText := ""
 	modCount := 0
 
 	entries, _ := os.ReadDir("mods")
@@ -102,7 +102,10 @@ func processMods(packName, version, mcVer, loaderID string, isServer bool) (mani
 			}
 		}
 	}
-	modListText += fmt.Sprintf("\nTotal: %d mods\n", modCount)
+	
+	// Remove trailing newline if present
+	modListText = strings.TrimSpace(modListText)
+	
 	return manifestData, modListText, modCount
 }
 

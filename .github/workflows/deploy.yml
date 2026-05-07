@@ -79,6 +79,12 @@ jobs:
             2. Click "Create Custom Profile" → "Import"
             3. Select the downloaded ZIP file
 
+            ### Memory Allocation
+            It's recommended to allocate at least 4GB to 6GB of RAM for the best experience.
+            - In the CurseForge App, click the **Settings** gear (bottom left).
+            - Go to **Minecraft** under "Game Specific".
+            - Scroll down to **Java Settings** and set the "Allocated Memory" slider to at least 4096 MB.
+
             ### Full Changelog
             https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
 

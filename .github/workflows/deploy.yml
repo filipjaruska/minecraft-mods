@@ -64,6 +64,35 @@ jobs:
           go run ./src
           go run ./src -server
 
+      - name: Prepare Release Body
+        run: |
+          cat <<EOF > release_body.md
+          ## ${{ env.PACK_NAME }} ${{ env.MC_VER }}+v${{ env.VERSION }}
+
+          Runs on **NeoForge:** ${{ env.NEOFORGE_VER }}
+
+          ### Installation
+          1. Download the CurseForge App from https://www.curseforge.com/download/app
+          2. Click "Create Custom Profile" → "Import"
+          3. Select the downloaded ZIP file
+
+          ### Memory Allocation
+          It's recommended to allocate at least 4GB to 6GB of RAM for the best experience.
+          - In the CurseForge App, click the **Settings** gear (bottom left).
+          - Go to **Minecraft** under "Game Specific".
+          - Scroll down to **Java Settings** and set the "Allocated Memory" slider to at least 4096 MB.
+
+          ### Full Changelog
+          https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
+
+          ### Mods
+          <details>
+          <summary>Click here to see all ${{ env.MOD_COUNT }} mods</summary>
+
+          $(cat mods_list.txt)
+          </details>
+          EOF
+
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -72,30 +101,9 @@ jobs:
           tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
-          body: |
-            ## ${{ env.PACK_NAME }} ${{ env.MC_VER }}+v${{ env.VERSION }}
-
-            Runs on **NeoForge:** ${{ env.NEOFORGE_VER }}
-
-            ### Installation
-            1. Download the CurseForge App from https://www.curseforge.com/download/app
-            2. Click "Create Custom Profile" → "Import"
-            3. Select the downloaded ZIP file
-
-            ### Memory Allocation
-            It's recommended to allocate at least 4GB to 6GB of RAM for the best experience.
-            - In the CurseForge App, click the **Settings** gear (bottom left).
-            - Go to **Minecraft** under "Game Specific".
-            - Scroll down to **Java Settings** and set the "Allocated Memory" slider to at least 4096 MB.
-
-            ### Full Changelog
-            https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
-
-            ### Mods
-            This modpack contains ${{ env.MOD_COUNT }} mods. See the attached mods_list.txt for the complete list.
+          body_path: release_body.md
           files: |
             *.zip
-            mods_list.txt
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

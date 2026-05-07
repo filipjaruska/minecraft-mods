@@ -93,11 +93,6 @@ hash = "42ffb6f5835250003da6ca3667ff751709ea295faee43b49c365b0f6c1e8f4d8"
 metafile = true
 
 [[files]]
-file = "mods/cosmetic-armor-reworked.pw.toml"
-hash = "b65ee01fec17228645121952de6dec75053b0b4c59a8c8036d6fa7829819f3f9"
-metafile = true
-
-[[files]]
 file = "mods/embeddium.pw.toml"
 hash = "359e68603f22e47e32c1136dee0c1785929f9753b5bcb2ab62ce022abc025ad9"
 metafile = true

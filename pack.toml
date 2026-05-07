@@ -1,11 +1,11 @@
-name = "Friends"
+name = "Friends Modpack"
 version = "0.1.0"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "28f0b3c26d91f13453d37dfb7a2efcc1318609347a2134fe114e5af977f1ffcb"
+hash = "12463993b5fac723e1ab4d1f66ffe868317508771ddcfc572433ec17183db198"
 
 [versions]
 minecraft = "1.21.1"

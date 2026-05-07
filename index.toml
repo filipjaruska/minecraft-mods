@@ -2,15 +2,15 @@ hash-format = "sha256"
 
 [[files]]
 file = ".github/workflows/deploy.yml"
-hash = "7386f20a059d1883bda4e85b46db27284e05a6b9547206136a9374aa6d5bc0f0"
+hash = "b78bd56f864a79ef7ebad8b70d739223166a7c2b023eecc08b4d52e2b9125122"
 
 [[files]]
 file = "README.md"
-hash = "51034648403426a15c85e664617f4587cb32078196e8ba14c6f1404b3421306c"
+hash = "77865ae6156c01217ddb57ac1b72effbc809b169252dba9b7dda06eb83f172b2"
 
 [[files]]
 file = "build-local.ps1"
-hash = "e1757ed3472f766983bde81a78b8e8188c366bfa819786bd9e30a9b7c5f74871"
+hash = "ae5badb4ec74e44a60a20118540c3109a88fd8a3eb3807532530f960619337f3"
 
 [[files]]
 file = "config/MouseTweaks.cfg"
@@ -18,7 +18,7 @@ hash = "050c8d951c1e824b57edb111e2214ded4a601ad3e3f5a5714ce196187229669a"
 
 [[files]]
 file = "config/appleskin-client.json"
-hash = "91061278031a47868c2f189c459725e5e1432833940b28a1c8f4af6fd45c903b"
+hash = "76e3e1d9310c04388e5f25594a51bfc9e87a7f3fb6f0d2362ed92b9a7676574c"
 
 [[files]]
 file = "config/betteradvancements.cfg"
@@ -34,7 +34,7 @@ hash = "880a9fc0a141b96520b8bb3507da2f2bfd798e3846942144af2bf827534cfaa9"
 
 [[files]]
 file = "config/jade-client.json"
-hash = "9cfe0d775adf39598374f608574b0856cd1da05ed9b22ba763f167e5a8cc5253"
+hash = "29fc78ce958cc831d01e39304d6cade832bb778c294cc4332f6a9a6e96e29e59"
 
 [[files]]
 file = "config/jei-client.toml"

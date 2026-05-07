@@ -54,184 +54,25 @@ jobs:
             echo "version=${VERSION}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Generate Mods List
-        id: mods_list
+      - name: Generate Mods List & Create CurseForge Modpack
         run: |
-          echo "Generating list of all mods in this release..."
+          echo "Building modpack via src/build.go..."
+          # Pass the pack name config to github actions
+          PACK_NAME=$(grep -m 1 "^name = " pack.toml | cut -d'"' -f2)
+          echo "PACK_NAME=${PACK_NAME}" >> $GITHUB_ENV
 
-          # Create a mods list file
-          echo "# Mods in Friends Modpack v${{ env.VERSION }}" > mods_list.txt
-          echo "" >> mods_list.txt
-          echo "This release includes the following mods:" >> mods_list.txt
-          echo "" >> mods_list.txt
-
-          # Parse all mod toml files and extract mod names
-          MOD_COUNT=0
-          for MOD_FILE in mods/*.pw.toml; do
-            # Extract mod name from the file
-            MOD_NAME=$(grep -m 1 "^name" "$MOD_FILE" | cut -d'"' -f2 | sed 's/^name = //')
-            
-            if [ -z "$MOD_NAME" ]; then
-              # If name extraction failed, use filename without extension as fallback
-              MOD_NAME=$(basename "$MOD_FILE" .pw.toml)
-            fi
-            
-            # Append to mods list
-            echo "- $MOD_NAME" >> mods_list.txt
-            MOD_COUNT=$((MOD_COUNT+1))
-          done
-
-          # Add summary
-          echo "" >> mods_list.txt
-          echo "Total: $MOD_COUNT mods" >> mods_list.txt
-
-          echo "Mods list generated:"
-          cat mods_list.txt
-
-          # Store just the mod count for the release notes
-          echo "MOD_COUNT=$MOD_COUNT" >> $GITHUB_ENV
-
-      - name: Create CurseForge Modpack
-        run: |
-          echo "Creating CurseForge compatible modpack..."
-
-          # Refresh packwiz index to ensure all mods are included
-          echo "Refreshing packwiz index..."
-          packwiz refresh
-
-          # List all mods in the modpack
-          echo "Mods in the modpack:"
-          ls -la mods/
-
-          # Create modpack structure
-          mkdir -p modpack_temp/overrides/mods
-          mkdir -p modpack_temp/overrides/config
-
-          # Copy packwiz files for reference (these won't be used by CurseForge)
-          cp pack.toml modpack_temp/overrides/
-          cp index.toml modpack_temp/overrides/
-          cp mods_list.txt modpack_temp/
-
-          # Copy options.txt to disable narrator on first launch
-          if [ -f "options.txt" ]; then
-            echo "Copying options.txt to disable narrator..."
-            cp options.txt modpack_temp/overrides/
-          fi
-
-          # Copy config files if they exist
-          if [ -d "config" ]; then
-            echo "Copying configuration files..."
-            cp -r config/* modpack_temp/overrides/config/
-            echo "Config directory contents:"
-            ls -la modpack_temp/overrides/config/
-          fi
-
-          # Create directory for downloading non-CurseForge mods
-          mkdir -p mod_downloads
-
-          # Start creating the manifest.json file with overrides property
-          cat > modpack_temp/manifest.json << EOF
-          {
-            "minecraft": {
-              "version": "1.21.1",
-              "modLoaders": [
-                {
-                  "id": "neoforge-21.1.205",
-                  "primary": true
-                }
-              ]
-            },
-            "manifestType": "minecraftModpack",
-            "manifestVersion": 1,
-            "name": "Friends Modpack",
-            "version": "${{ env.VERSION }}",
-            "author": "filipjaruska",
-            "overrides": "overrides",
-            "files": [
-          EOF
-
-          # Parse all mod toml files
-          echo "Processing mod files..."
-          FIRST_MOD=true
-          for MOD_FILE in mods/*.pw.toml; do
-            if grep -q "mode = \"metadata:curseforge\"" "$MOD_FILE"; then
-              PROJECT_ID=$(grep -oP 'project-id\s*=\s*\K\d+' "$MOD_FILE")
-              FILE_ID=$(grep -oP 'file-id\s*=\s*\K\d+' "$MOD_FILE")
-              
-              if [ ! -z "$PROJECT_ID" ] && [ ! -z "$FILE_ID" ]; then
-                echo "Found CurseForge mod: Project ID: $PROJECT_ID, File ID: $FILE_ID in $MOD_FILE"
-                
-                # Add comma for all mods except the first one
-                if [ "$FIRST_MOD" = true ]; then
-                  FIRST_MOD=false
-                else
-                  echo "," >> modpack_temp/manifest.json
-                fi
-                
-                # Add the mod to manifest.json
-                cat >> modpack_temp/manifest.json << EOF
-              {
-                "projectID": $PROJECT_ID,
-                "fileID": $FILE_ID,
-                "required": true
-              }
-          EOF
-              fi
-            else
-              echo "Processing non-CurseForge mod: $MOD_FILE"
-              
-              # Extract download URL and filename from .pw.toml
-              URL=$(grep -oP 'url\s*=\s*"\K[^"]+' "$MOD_FILE")
-              FILENAME=$(grep -oP 'filename\s*=\s*"\K[^"]+' "$MOD_FILE")
-              
-              if [ ! -z "$URL" ] && [ ! -z "$FILENAME" ]; then
-                echo "Downloading $FILENAME from $URL"
-                # Download the actual mod .jar file
-                curl -L -o "mod_downloads/$FILENAME" "$URL"
-                
-                if [ -f "mod_downloads/$FILENAME" ]; then
-                  echo "Successfully downloaded $FILENAME"
-                  # Copy the downloaded .jar to the overrides/mods directory
-                  cp "mod_downloads/$FILENAME" "modpack_temp/overrides/mods/"
-                else
-                  echo "Failed to download $FILENAME"
-                fi
-              else
-                echo "Warning: Could not extract download information from $MOD_FILE"
-              fi
-            fi
-          done
-
-          # Close the JSON structure
-          cat >> modpack_temp/manifest.json << EOF
-            ]
-          }
-          EOF
-
-          echo "Manifest.json content:"
-          cat modpack_temp/manifest.json
-
-          echo "Overrides mods directory content:"
-          ls -la modpack_temp/overrides/mods/
-
-          # Create modpack ZIP
-          cd modpack_temp
-          zip -r ../FriendsModpack-${{ env.VERSION }}.zip *
-          cd ..
-
-          echo "Modpack ZIP file created:"
-          ls -la FriendsModpack-${{ env.VERSION }}.zip
+          go run ./src
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          name: Friends Modpack v${{ env.VERSION }}
+          name: ${{ env.PACK_NAME }} v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
           body: |
-            ## Friends Modpack v${{ env.VERSION }}
+            ## ${{ env.PACK_NAME }} v${{ env.VERSION }}
 
             ### Installation
             1. Download the CurseForge App from https://www.curseforge.com/download/app
@@ -242,9 +83,9 @@ jobs:
             https://github.com/filipjaruska/minecraft-mods/commits/v${{ env.VERSION }}
 
             ### Mods
-            This modpack contains ${{ env.MOD_COUNT }} mods. See the attached mods_list.txt for the complete list.
+            This modpack contains the latest updates. See the attached mods_list.txt for the complete list.
           files: |
-            FriendsModpack-${{ env.VERSION }}.zip
+            *.zip
             mods_list.txt
           fail_on_unmatched_files: false
         env:

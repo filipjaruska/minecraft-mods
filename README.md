@@ -8,18 +8,14 @@ The latest release can be downloaded from [here](https://github.com/filipjaruska
 
 ## Overview
 
-This modpack uses [packwiz](https://packwiz.infra.link/tutorials/creating/getting-started/) for modpack management.
+This modpack uses [packwiz](https://packwiz.infra.link/tutorials/creating/getting-started/) for mod management.
 
 ## Development Instructions
 
 1. Install Go (1.19 or newer) from https://golang.org/dl/
 2. Run in terminal: `go install github.com/packwiz/packwiz@latest`
 
-### Building the Modpack
-
-Run `.\build-local.ps1` to build the game locally
-
-## Mod Management
+3. Add mods to `mods.toml` using packwiz:
 
 ```bash
 # Install from CurseForge
@@ -28,3 +24,5 @@ packwiz curseforge install [mod]
 # Install from Modrinth
 packwiz modrinth install [mod]
 ```
+
+4. Build the game locally by running`go run ./src`.

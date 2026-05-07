@@ -1,0 +1,3 @@
+[lantern]
+	# This feature has been moved from Supplementaries to Amendments in 1.21
+	lantern_holding = true

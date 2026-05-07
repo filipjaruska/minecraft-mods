@@ -9,11 +9,11 @@
     "hideFromTabList": true,
     "enableAccessibilityPlugin": true,
     "flipMainHand": false,
-    "reachDistance": 20
+    "reachDistance": 8
   },
   "overlay": {
     "overlayPosX": 0.5,
-    "overlayPosY": 1.0,
+    "overlayPosY": 0.0,
     "overlayScale": 1.0,
     "overlayTheme": "dark",
     "alpha": 0.8,

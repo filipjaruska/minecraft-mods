@@ -1,0 +1,6 @@
+[items]
+	[items.quiver]
+		enabled = true
+[blocks]
+	[blocks.safe]
+		enabled = true

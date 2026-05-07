@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -19,6 +20,9 @@ const (
 )
 
 func main() {
+	isServer := flag.Bool("server", false, "Build a server pack instead of a client pack (filters out side=\"client\" mods)")
+	flag.Parse()
+
 	version := os.Getenv("VERSION")
 	if version == "" {
 		version = "local-" + time.Now().Format("20060102")
@@ -37,9 +41,15 @@ func main() {
 	}
 	mcVer := parseString(content, `minecraft\s*=\s*"([^"]+)"`)
 	loaderID := "neoforge-" + parseString(content, `neoforge\s*=\s*"([^"]+)"`)
-	
+
 	// Create zip name representation without spaces
 	modpackZipName := strings.ReplaceAll(packName, " ", "")
+	
+	// Modify names if building for server
+	if *isServer {
+		packName += " Server"
+		modpackZipName += "-Server"
+	}
 
 	fmt.Printf("Building %s (%s)\n", packName, version)
 
@@ -58,7 +68,7 @@ func main() {
 	setupWorkspace()
 
 	// 2. Extract configurations and bundle Modrinth jars
-	manifestData, modListText, modCount := processMods(packName, version, mcVer, loaderID)
+	manifestData, modListText, modCount := processMods(packName, version, mcVer, loaderID, *isServer)
 
 	// Export MOD_COUNT to GitHub Actions if running in CI
 	if envFile := os.Getenv("GITHUB_ENV"); envFile != "" {
@@ -74,14 +84,14 @@ func main() {
 	copyFile(modsListName, filepath.Join(modpackTemp, modsListName))
 
 	// 4. Inject configs and other local overrides
-	copyOverrides()
+	copyOverrides(*isServer)
 
 	// 5. Save the generated manifest.json
 	manifestJSON, _ := json.MarshalIndent(manifestData, "", "  ")
 	check(os.WriteFile(filepath.Join(modpackTemp, manifestName), append(manifestJSON, '\n'), 0o644))
 	fmt.Println("Manifest.json created")
 
-	// 6. Zip everything up into a CurseForge-ready pack
+	// 6. Zip into a CurseForge pack
 	zipName := fmt.Sprintf("%s-%s.zip", modpackZipName, version)
 	check(createZip(modpackTemp, zipName))
 

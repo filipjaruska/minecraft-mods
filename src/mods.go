@@ -42,7 +42,7 @@ func setupWorkspace() {
 	})
 }
 
-func processMods(packName, version, mcVer, loaderID string) (manifest, string, int) {
+func processMods(packName, version, mcVer, loaderID string, isServer bool) (manifest, string, int) {
 	manifestData := manifest{
 		ManifestType:    "minecraftModpack",
 		ManifestVersion: 1,
@@ -68,6 +68,11 @@ func processMods(packName, version, mcVer, loaderID string) (manifest, string, i
 		path := filepath.Join("mods", entry.Name())
 		contentBytes, _ := os.ReadFile(path)
 		content := string(contentBytes)
+
+		// Skip client-only mods for the server pack
+		if isServer && (strings.Contains(content, `side = "client"`) || strings.Contains(content, `side="client"`)) {
+			continue
+		}
 
 		name := parseString(content, `name\s*=\s*"([^"]+)"`)
 		if name == "" {
@@ -101,10 +106,16 @@ func processMods(packName, version, mcVer, loaderID string) (manifest, string, i
 	return manifestData, modListText, modCount
 }
 
-func copyOverrides() {
-	for _, f := range []string{"pack.toml", "index.toml", "options.txt"} {
+func copyOverrides(isServer bool) {
+	for _, f := range []string{"pack.toml", "index.toml"} {
 		copyFile(f, filepath.Join(modpackTemp, "overrides", f))
 	}
+	
+	// options.txt is generally client-only
+	if !isServer {
+		copyFile("options.txt", filepath.Join(modpackTemp, "overrides", "options.txt"))
+	}
+
 	if _, err := os.Stat("config"); err == nil {
 		filepath.WalkDir("config", func(path string, d fs.DirEntry, err error) error {
 			if err == nil && !d.IsDir() {

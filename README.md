@@ -1,28 +1,28 @@
 # Friends Modpack
 
-[Note] Keep master vanilla ish with qol mods.
+Vanilla~ish with qol mods. The latest release can be downloaded from [here](https://github.com/filipjaruska/minecraft-mods/releases/latest).
 
-## Download Latest Release
+## Self hosting
 
-The latest release can be downloaded from [here](https://github.com/filipjaruska/minecraft-mods/releases/latest).
+todo
 
-## Overview
+## Development Instructions
 
 This modpack uses [packwiz](https://packwiz.infra.link/tutorials/creating/getting-started/) for mod management.
 
-## Development Instructions
+> Modpack already contains Forgified Fabric API and Sinytra Connector, no need to worry about compatibility, its possible to install Fabric only mods without worrying about compatibility with Forge mods.
 
 1. Install Go (1.19 or newer) from https://golang.org/dl/
 2. Run in terminal: `go install github.com/packwiz/packwiz@latest`
 
-3. Add mods to `mods.toml` using packwiz:
+3. Add new mods using packwiz:
 
 ```bash
-# Install from CurseForge
-packwiz curseforge install [mod]
+packwiz curseforge install [mod] # Install from CurseForge
 
-# Install from Modrinth
-packwiz modrinth install [mod]
+packwiz modrinth install [mod] # Install from Modrinth
 ```
 
-4. Build the game locally by running`go run ./src`.
+For new GUI only mods run: `packwiz mod side "name of mod" client`
+
+4. Build the game locally by running`go run ./src` or `go run ./src --server` for server only build.
